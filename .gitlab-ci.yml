@@ -1,4 +1,4 @@
-image: node:20
+image: docker:latest
 
 services:
   - docker:dind
@@ -13,6 +13,13 @@ variables:
   DOCKER_IMAGE: $DOCKER_USERNAME/$CI_PROJECT_NAME
 
 before_script:
+  # Install Node.js and npm
+  - apt-get update
+  - apt-get install -y curl
+  - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+  - apt-get install -y nodejs
+  - node -v
+  - npm -v
   - docker info
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
