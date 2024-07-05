@@ -2,7 +2,7 @@ image: docker:latest
 
 services:
   - docker:dind
-  
+
 stages:
   - build
   - test
@@ -14,8 +14,7 @@ variables:
 
 before_script:
   - docker info
-  - apk add --no-cache python3 py3-pip
-  - pip3 install docker-compose
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
 build:
   stage: build
