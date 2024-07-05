@@ -1,0 +1,36 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_IMAGE: $DOCKER_USERNAME/my-nextjs-app
+
+before_script:
+  - docker info
+  - apk add --no-cache python3 py3-pip
+  - pip3 install docker-compose
+
+build:
+  stage: build
+  script:
+    - docker build -t $DOCKER_IMAGE:$CI_COMMIT_SHA .
+    - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+    - docker push $DOCKER_IMAGE:$CI_COMMIT_SHA
+
+test:
+  stage: test
+  script:
+    - docker run -d -p 3000:3000 $DOCKER_IMAGE:$CI_COMMIT_SHA
+    - npm run test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."
+  environment:
+    name: production
+    url: http://your-production-url
+  only:
+    - master
