@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
         // Generate a random number between 0 and 1
         const randomNumber = Math.random();
         // Set a threshold for adding tracks, e.g., 0.5 for a 50% chance
-        const threshold = 0.5;
+        const threshold = 0.6;
         // Only push tracks if randomNumber is greater than or equal to threshold
         if (randomNumber >= threshold) {
             radioPlaylist.push(...response.data.tracks);
