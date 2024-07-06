@@ -34,49 +34,6 @@ async function fetchRadioPlaylist(artistId: string, accessToken: string): Promis
   }
 }
 
-// async function fetchRelatedArtists(artistId: string, accessToken: string): Promise<Artist[]> {
-//   try {
-//     const res = await fetch(`http://localhost:3000/api/related-artists?artistId=${artistId}`, {
-//       headers: {
-//         'Authorization': `Bearer ${accessToken}`
-//       },
-//       cache: 'no-store'
-//     });
-
-//     if (!res.ok) {
-//       const text = await res.text();
-//       throw new Error(`Error fetching related artists: ${res.status} ${res.statusText} - ${text}`);
-//     }
-
-//     const data = await res.json();
-//     return data.artists;
-//   } catch (error) {
-//     console.error('Failed to fetch related artists:', error);
-//     throw error;
-//   }
-// }
-
-// async function fetchTopTracks(artistId: string, accessToken: string): Promise<Track[]> {
-//   try {
-//     const res = await fetch(`http://localhost:3000/api/top-tracks?artistId=${artistId}`, {
-//       headers: {
-//         'Authorization': `Bearer ${accessToken}`
-//       },
-//       cache: 'no-store'
-//     });
-
-//     if (!res.ok) {
-//       const text = await res.text();
-//       throw new Error(`Error fetching top tracks: ${res.status} ${res.statusText} - ${text}`);
-//     }
-
-//     const data = await res.json();
-//     return data.tracks;
-//   } catch (error) {
-//     console.error('Failed to fetch top tracks:', error);
-//     throw error;
-//   }
-// }
 
 const ArtistPage = async ({ params }: { params: { id: string } }) => {
   const cookieStore = cookies();

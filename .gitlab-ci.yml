@@ -11,6 +11,13 @@ stages:
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_IMAGE: $DOCKER_USERNAME/$CI_PROJECT_NAME
+  PROJECT_ID: almari-ecc12
+  SERVICE_NAME: pre-nerf-spotify-radio
+  REGION: asia-southeast1  # e.g., us-central1
+
+# variables:
+#   DOCKER_DRIVER: overlay2
+#   DOCKER_IMAGE: $DOCKER_USERNAME/$CI_PROJECT_NAME
 
 before_script:
   - docker info
@@ -29,7 +36,7 @@ build:
 test:
   stage: test
   script:
-    - docker run -d -p 3000:3000 --name test-container $DOCKER_IMAGE:$CI_COMMIT_SHA
+    - docker run -d -p 3000:3000 --name test-container $DOCKER_IMAGE:latest
     # add another command that reads the log
     - docker container logs test-container
 
@@ -42,3 +49,18 @@ deploy:
     url: http://your-production-url
   only:
     - main
+# deploy:
+#   stage: deploy
+#   script:
+#     # Authenticate with Google Cloud
+#     - echo $GCLOUD_SERVICE_KEY | base64 -d > ${CI_PROJECT_DIR}/gcloud-service-key.json
+#     - gcloud auth activate-service-account --key-file=${CI_PROJECT_DIR}/gcloud-service-key.json
+#     - gcloud config set project $PROJECT_ID
+
+#     # Deploy the Docker image to Google Cloud Run from Docker Hub
+#     - gcloud run deploy $SERVICE_NAME --image $DOCKER_IMAGE:latest --region $REGION --platform managed --allow-unauthenticated
+#   environment:
+#     name: production
+#     url: http://your-production-url
+#   only:
+#     - main
