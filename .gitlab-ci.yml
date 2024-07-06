@@ -56,7 +56,7 @@ jmeter:
   image: justb4/jmeter:latest
   script:
     - mkdir -p /test-results
-    - jmeter -n -t test_plan.jmx -l /test-results/results.jtl -j /test-results/jmeter.log
+    - jmeter -n -t performance.jmx -l /test-results/results.jtl -j /test-results/jmeter.log
   artifacts:
     paths:
       - /test-results/
