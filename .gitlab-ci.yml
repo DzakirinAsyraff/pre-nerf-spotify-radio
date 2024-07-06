@@ -19,9 +19,9 @@ before_script:
 build:
   stage: build
   script:
-    - docker build --build-arg SPOTIFY_CLIENT_ID=$SPOTIFY_CLIENT_ID \
-                   --build-arg SPOTIFY_CLIENT_SECRET=$SPOTIFY_CLIENT_SECRET \
-                   --build-arg SPOTIFY_REDIRECT_URI=$SPOTIFY_REDIRECT_URI \
+    - docker build --build-arg="SPOTIFY_CLIENT_ID=$SPOTIFY_CLIENT_ID"
+                   --build-arg="SPOTIFY_CLIENT_SECRET=$SPOTIFY_CLIENT_SECRET"
+                   --build-arg="SPOTIFY_REDIRECT_URI=$SPOTIFY_REDIRECT_URI"
                    -t $DOCKER_IMAGE .
     - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
     - docker push $DOCKER_IMAGE:latest
