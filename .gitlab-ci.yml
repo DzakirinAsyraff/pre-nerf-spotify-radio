@@ -19,9 +19,9 @@ before_script:
 build:
   stage: build
   script:
-    - docker build -t $DOCKER_IMAGE:$CI_COMMIT_SHA .
+    - docker build -t $DOCKER_IMAGE --build-arg SPOTIFY_CLIENT_ID=your_spotify_client_id \ --build-arg SPOTIFY_CLIENT_SECRET=your_spotify_client_secret \ --build-arg SPOTIFY_REDIRECT_URI=your_spotify_redirect_uri \ .
     - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-    - docker push $DOCKER_IMAGE:$CI_COMMIT_SHA
+    - docker push $DOCKER_IMAGE:latest
 
 test:
   stage: test

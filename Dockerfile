@@ -13,6 +13,15 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
+# Build environment variables into the image
+ARG SPOTIFY_CLIENT_ID
+ARG SPOTIFY_CLIENT_SECRET
+ARG SPOTIFY_REDIRECT_URI
+
+ENV SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+ENV SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+ENV SPOTIFY_REDIRECT_URI=${SPOTIFY_REDIRECT_URI}
+
 # Build the Next.js application
 RUN npm run build
 
