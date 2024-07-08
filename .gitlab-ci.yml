@@ -8,6 +8,7 @@ stages:
   - test
   - deploy
   - jmeter
+  - end
 
 variables:
   DOCKER_DRIVER: overlay2
