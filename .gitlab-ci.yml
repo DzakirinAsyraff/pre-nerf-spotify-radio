@@ -55,11 +55,17 @@ jmeter:
   stage: jmeter
   image: justb4/jmeter:latest
   script:
-    - mkdir -p /test-results
+    # - mkdir -p /test-results
     - jmeter -n -t performance.jmx -l /test-results/results.jtl -j /test-results/jmeter.log
   artifacts:
     paths:
       - /test-results/
+
+end:
+  stage: end
+  script:
+    # - mkdir -p /test-results
+    - echo "Finish pipeline."
 
 # deploy:
 #   stage: deploy
