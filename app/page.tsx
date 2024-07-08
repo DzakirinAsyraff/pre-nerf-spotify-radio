@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome</h1>
+        <h1 className="text-4xl font-bold mb-4">Welcome to the app</h1>
         <Link href="/api/login">
           <button>Login with Spotify</button>
         </Link>

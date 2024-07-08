@@ -15,7 +15,7 @@ variables:
   DOCKER_IMAGE: $DOCKER_USERNAME/$CI_PROJECT_NAME
   PROJECT_ID: almari-ecc12
   SERVICE_NAME: pre-nerf-spotify-radio
-  REGION: asia-southeast1  # e.g., us-central1
+  REGION: asia-southeast1
 
 # variables:
 #   DOCKER_DRIVER: overlay2
